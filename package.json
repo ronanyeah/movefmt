@@ -1,4 +1,9 @@
 {
+  "name": "movefmt",
+  "version": "1.0.0",
+  "bin": {
+    "movefmt": "./bin/index.js"
+  },
   "scripts": {
     "fmt": "prettier --config package.json --plugin=@mysten/prettier-plugin-move -w"
   },

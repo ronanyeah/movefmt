@@ -1,11 +1,7 @@
 # movefmt
 
 ```bash
-# bash
-movefmt () {
-	local abs_path=$(realpath "$@") 
-	npm --prefix ./path/to/movefmt run fmt -- "$abs_path"
-}
+$ npm i -g https://github.com/ronanyeah/movefmt
 ```
 
 ```bash
