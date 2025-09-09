@@ -1,31 +1,33 @@
-#!/usr/bin/env node
-"use strict";
 import prettier from "prettier";
 import { readFileSync, writeFileSync, statSync } from "fs";
 import { resolve } from "path";
 import { glob } from "glob";
-async function formatFile(filePath) {
+
+async function formatFile(filePath: string) {
   const content = readFileSync(filePath, "utf8");
   const formatted = await prettier.format(content, {
     filepath: filePath,
     useModuleLabel: true,
-    plugins: ["@mysten/prettier-plugin-move"]
+    plugins: ["@mysten/prettier-plugin-move"],
   });
   if (content !== formatted) {
     writeFileSync(filePath, formatted);
-    console.log(`\u2705 Formatted: ${filePath}`);
+    console.log(`✅ Formatted: ${filePath}`);
   } else {
     console.log(`Unchanged: ${filePath}`);
   }
 }
+
 async function main() {
   const inputPath = process.argv[2];
   if (!inputPath) {
     console.error("Usage: movefmt <file|directory>");
     process.exit(1);
   }
+
   const absPath = resolve(inputPath);
   const stat = statSync(absPath);
+
   if (stat.isFile()) {
     await formatFile(absPath);
   } else if (stat.isDirectory()) {
@@ -37,6 +39,7 @@ async function main() {
     await Promise.all(files.map(formatFile));
   }
 }
+
 main().catch((error) => {
   console.error("Unexpected error:", error);
   process.exit(1);

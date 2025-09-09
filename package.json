@@ -1,17 +1,21 @@
 {
+  "type": "module",
   "name": "movefmt",
   "version": "1.0.0",
   "bin": {
     "movefmt": "./bin/index.js"
   },
   "scripts": {
-    "fmt": "prettier --config package.json --plugin=@mysten/prettier-plugin-move -w"
-  },
-  "prettier": {
-    "useModuleLabel": true
+    "build": "esbuild src/index.ts --outfile=bin/index.js --platform=node --banner:js='#!/usr/bin/env node'",
+    "watch": "tsc --noEmit --watch"
   },
   "dependencies": {
     "@mysten/prettier-plugin-move": "^0.3.0",
+    "glob": "^11.0.3",
     "prettier": "^3.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "^24.3.1",
+    "esbuild": "^0.25.9"
   }
 }
