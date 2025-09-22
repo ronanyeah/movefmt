@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@mysten/prettier-plugin-move": "^0.3.0",
+    "commander": "^14.0.0",
     "glob": "^11.0.3",
     "prettier": "^3.1.1"
   },
